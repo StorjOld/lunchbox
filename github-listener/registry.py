@@ -1,21 +1,27 @@
 import json
+import subprocess
 
 class Registry:
     def __init__(self, filename):
         self.potato = json.loads(open(filename).read())["hooks"]
 
     def notify(self, repo, branch, sha):
-        fn = self.file_for(repo, branch)
+        hook = self.hook_for(repo, branch)
 
-        if fn is None:
+        if hook is None:
             return
 
-        with open(fn, "w") as f:
-            f.write(sha)
+        if "deploy" in hook:
+            subprocess.call(hook["deploy"])
 
-    def file_for(self, repo, branch):
+        if "file" in hook:
+            with open(hook["file"], "w") as f:
+                f.write(sha)
+
+
+    def hook_for(self, repo, branch):
         candidates = [
-            hook["file"]
+            hook
             for hook in self.potato
             if hook["repository"] == repo and
                hook["branch"] == branch]
@@ -24,4 +30,3 @@ class Registry:
             return None
         else:
             return candidates[0]
-
