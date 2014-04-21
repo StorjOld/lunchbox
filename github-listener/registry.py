@@ -12,7 +12,7 @@ class Registry:
             return
 
         if "deploy" in hook:
-            subprocess.call(hook["deploy"])
+            subprocess.call(hook["deploy"], shell=True)
 
         if "file" in hook:
             with open(hook["file"], "w") as f:
