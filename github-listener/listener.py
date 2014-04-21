@@ -13,12 +13,16 @@ def get_registry():
 
 @app.route("/hook/<repo>", methods=['POST'])
 def hook(repo):
-    branch = flask.request.json["ref"].split("/")[-1]
-    sha    = flask.request.json["head"]
+    if flask.request.headers['X-GitHub-Event'] == 'ping':
+        return flask.jsonify(zen_level="super")
 
-    get_registry().notify(repo, branch, sha)
+    if flask.request.headers['X-GitHub-Event'] == 'push':
+        branch = flask.request.json["ref"].split("/")[-1]
+        sha    = flask.request.json["head"]
 
-    return flask.jsonify(status="ok")
+        get_registry().notify(repo, branch, sha)
+
+        return flask.jsonify(status="ok")
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=8080)
