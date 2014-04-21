@@ -18,7 +18,7 @@ def hook(repo):
 
     if flask.request.headers['X-GitHub-Event'] == 'push':
         branch = flask.request.json["ref"].split("/")[-1]
-        sha    = flask.request.json["head"]
+        sha    = flask.request.json["after"]
 
         get_registry().notify(repo, branch, sha)
 
