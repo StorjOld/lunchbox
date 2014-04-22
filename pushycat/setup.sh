@@ -1,6 +1,7 @@
 adduser pushycat
 
-sudo -u pushycat <<EOF
+sudo -u pushycat bash <<EOF
+  cd ~
   git clone https://github.com/Storj/pushy-cat.git
   cd pushy-cat
   virtualenv .env --prompt [pushycat]
