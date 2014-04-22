@@ -1,0 +1,10 @@
+{
+  "hooks": [
+    {
+      "repository": "bitcumulus",
+      "branch":     "master",
+      "deploy":     "sudo -u bitcumulus /etc/pushycat/hooks/bitcumulus.sh"
+    }
+  ]
+}
+
