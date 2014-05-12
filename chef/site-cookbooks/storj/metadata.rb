@@ -8,8 +8,8 @@ version          "1.0.0"
 depends "apt"
 depends "user"
 depends 'python'
-#depends "nginx"
-#depends "postgresql"
+depends "nginx"
+depends "postgresql"
 #depends "database"
 
 %w{ ubuntu debian }.each do |os|

@@ -2,9 +2,29 @@ SITE
   remote: http://community.opscode.com/api/v1
   specs:
     apt (2.3.10)
+    bluepill (2.3.1)
+      rsyslog (>= 0.0.0)
     build-essential (2.0.2)
+    nginx (2.6.2)
+      apt (~> 2.2)
+      bluepill (~> 2.3)
+      build-essential (~> 2.0)
+      ohai (~> 1.1)
+      runit (~> 1.2)
+      yum-epel (~> 0.3)
+    ohai (1.1.12)
+    openssl (1.1.0)
+    postgresql (3.4.0)
+      apt (>= 1.9.0)
+      build-essential (>= 0.0.0)
+      openssl (>= 0.0.0)
     python (1.4.6)
       build-essential (>= 0.0.0)
+      yum-epel (>= 0.0.0)
+    rsyslog (1.12.2)
+    runit (1.5.10)
+      build-essential (>= 0.0.0)
+      yum (~> 3.0)
       yum-epel (>= 0.0.0)
     user (0.3.0)
     yum (3.2.0)
@@ -13,6 +33,8 @@ SITE
 
 DEPENDENCIES
   apt (>= 0)
+  nginx (>= 0)
+  postgresql (>= 0)
   python (>= 0)
   user (>= 0)
 
