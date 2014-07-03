@@ -1,9 +1,9 @@
 {
   "hooks": [
     {
-      "repository": "bitcumulus",
+      "repository": "metadisk",
       "branch":     "master",
-      "deploy":     "sudo -u bitcumulus /etc/pushycat/hooks/bitcumulus.sh"
+      "deploy":     "sudo -u metadisk /etc/pushycat/hooks/metadisk.sh"
     }
   ]
 }
