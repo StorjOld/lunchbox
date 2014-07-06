@@ -1,0 +1,35 @@
+{
+  "run_list": [
+    "recipe[storj::metadisk]",
+    "recipe[storj::datacoin]",
+    "recipe[storj::pushycat]"
+  ],
+
+  "metadisk": {
+    "hostname": "node3.storj.io",
+    "accounts": {
+      "enabled": true,
+      "api_key": "potato"
+    },
+    "limits": {
+      "file_size":         1024768,
+      "storage_size":      10247680,
+      "outgoing_transfer": 322122547200,
+      "incoming_transfer": 751619276800
+    }
+  },
+
+  "datacoin": {
+    "rpc": {
+      "password": "banana"
+    }
+  },
+
+  "postgresql": {
+    "version": "9.3",
+    "password": {
+      "postgres": "zucchini",
+      "storj": "tomato"
+    }
+  }
+}
