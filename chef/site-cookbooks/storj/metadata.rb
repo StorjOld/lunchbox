@@ -9,8 +9,9 @@ depends "apt"
 depends "user"
 depends 'python'
 depends "nginx"
+depends "database"
 depends "postgresql"
-#depends "database"
+depends "pushycat"
 
 %w{ ubuntu debian }.each do |os|
   supports os

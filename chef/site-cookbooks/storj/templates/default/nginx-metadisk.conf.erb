@@ -8,24 +8,32 @@ server {
     error_log /var/log/nginx/metadisk.error.log;
 
     location / {
-        add_header 'Access-Control-Allow-Origin' 'http://localhost:8000';
-        add_header 'Access-Control-Allow-Credentials' 'true';
-
         try_files $uri/index.html $uri $uri.html @metadisk;
     }
 
-    location @metadisk {
-        add_header 'Access-Control-Allow-Origin' 'http://localhost:8000';
-        add_header 'Access-Control-Allow-Credentials' 'true';
+    location /accounts/ {
+        try_files $uri/index.html $uri $uri.html @accounts;
+    }
 
+    location /hook/ {
+        try_files $uri/index.html $uri $uri.html @pushycat;
+    }
+
+    location @metadisk {
         proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
         proxy_pass http://127.0.0.1:5000;
     }
 
-    # TODO: This should probably be in a different server directive.
-    location /hook/ {
+    location @accounts {
+        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://127.0.0.1:6000;
+    }
+
+    location @pushycat {
         proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
@@ -47,4 +55,3 @@ server {
         proxy_set_header Connection "Upgrade";
     }
 }
-

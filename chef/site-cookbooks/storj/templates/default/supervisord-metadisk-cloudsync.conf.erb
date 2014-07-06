@@ -1,8 +1,0 @@
-[program:metadisk-cloudsync]
-command=/home/<%= @user %>/web-core/.env/bin/python cloudsync.py
-directory=/home/<%= @user %>/web-core
-user=<%= @user %>
-
-autostart=true
-autorestart=true
-redirect_stderr=true
