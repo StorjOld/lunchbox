@@ -2,12 +2,12 @@ DATACOIN_PASSWORD = "<%= @datacoin_password %>"
 
 DATABASE_PATH = "dbname=storj user=storj password=<%= @database_password %> host=localhost"
 
-STORAGE_SIZE = 10*(2**30) # 10 GiB
-STORAGE_FILE = 1*(2**30) # 1 GiB
+STORAGE_SIZE = <%= @limits_storage_size %>
+STORAGE_FILE = <%= @limits_file_size %>
 
-ACCOUNTS_API_ENABLED  = True
+ACCOUNTS_API_ENABLED  = <%= @accounts_enabled %>
 ACCOUNTS_API_BASE_URL = "http://<%= @hostname %>/accounts"
-ACCOUNTS_API_KEY      = "36735e48219e8e7a8c02fbd958405396c4537fcadfe508624ae410b6ae59b305"
+ACCOUNTS_API_KEY      = "<%= @accounts_api_key %>"
 
-TRANSFER_MAX_INCOMING = 300*(2**30) # 300 GiB
-TRANSFER_MAX_OUTGOING = 700*(2**30) # 700 GiB
+TRANSFER_MAX_INCOMING = <%= @limits_incoming_transfer %>
+TRANSFER_MAX_OUTGOING = <%= @limits_outgoing_transfer %>
