@@ -1,9 +1,6 @@
 include_recipe 'python::virtualenv'
 
-package 'supervisor'
-
 account = 'websockets'
-hostname = 'node2.storj.io'
 
 user_account account do
   create_group true
@@ -33,19 +30,19 @@ execute 'metadisk-websockets-requirements' do
   group account
 end
 
-template "/etc/supervisor/conf.d/websockets.conf" do
-  mode 0600
-  owner "root"
-  group "root"
-  source "supervisord-websockets.conf.erb"
+template "/etc/init/metadisk-websockets.conf" do
+  mode  0644
+  owner 'root'
+  group 'root'
 
+  source "metadisk-websockets.upstart.erb"
   variables user: account
 
-  notifies :run, 'execute[enable-supervisord-websockets]'
+  notifies :run, 'execute[enable-metadisk-websockets]'
 end
 
-execute 'enable-supervisord-websockets' do
-  command 'supervisorctl start websockets'
+execute 'enable-metadisk-websockets' do
+  command 'service metadisk-websockets start'
   action  :nothing
 
   user  'root'

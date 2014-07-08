@@ -1,8 +1,0 @@
-[program:websockets]
-command=/home/<%= @user %>/metadisk-websockets/.env/bin/python index.py
-directory=/home/<%= @user %>/metadisk-websockets
-user=<%= @user %>
-
-autostart=true
-autorestart=true
-redirect_stderr=true

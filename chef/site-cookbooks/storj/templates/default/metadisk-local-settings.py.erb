@@ -5,7 +5,7 @@ DATABASE_PATH = "dbname=storj user=storj password=<%= @database_password %> host
 STORAGE_SIZE = <%= @limits_storage_size %>
 STORAGE_FILE = <%= @limits_file_size %>
 
-ACCOUNTS_API_ENABLED  = <%= @accounts_enabled %>
+ACCOUNTS_API_ENABLED  = <%= @accounts_enabled ? "True" : "False" %>
 ACCOUNTS_API_BASE_URL = "http://<%= @hostname %>/accounts"
 ACCOUNTS_API_KEY      = "<%= @accounts_api_key %>"
 
