@@ -11,4 +11,4 @@ chdir /home/<%= @user %>/metadisk-websockets
 setuid <%= @user %>
 setgid <%= @user %>
 
-exec /home/<%= @user %>/metadisk-websockets/.env/bin/python index.py
+exec /home/<%= @user %>/metadisk-websockets/.env/bin/gunicorn -w 2 -t 60 -b 127.0.0.1:5050 --worker-class socketio.sgunicorn.GeventSocketIOWorker index:app
