@@ -80,6 +80,8 @@ execute 'webcore-requirements' do
   cwd   "/home/#{account}/web-core"
   user  account
   group account
+
+  notifies :run, 'execute[webcore-migrations]'
 end
 
 execute 'accounts-requirements' do
@@ -90,6 +92,8 @@ execute 'accounts-requirements' do
   cwd   "/home/#{account}/accounts"
   user  account
   group account
+
+  notifies :run, 'execute[accounts-migrations]'
 end
 
 template "/home/#{account}/frontend/static/js/local_settings.js" do
@@ -129,6 +133,7 @@ template "/home/#{account}/web-core/local_settings.py" do
   )
 
   notifies :run, 'execute[enable-metadisk-webcore]'
+  notifies :run, 'execute[enable-metadisk-cloudsync]'
 end
 
 template "/home/#{account}/accounts/local_settings.py" do
@@ -138,6 +143,22 @@ template "/home/#{account}/accounts/local_settings.py" do
   source "metadisk-accounts-local-settings.py.erb"
 
   variables database_password: node['postgresql']['password']['storj']
+end
+
+execute 'webcore-migrations' do
+  command '.env/bin/python migrate.py'
+
+  cwd   "/home/#{account}/web-core"
+  user  account
+  group account
+end
+
+execute 'accounts-migrations' do
+  command '.env/bin/python migrate.py'
+
+  cwd   "/home/#{account}/accounts"
+  user  account
+  group account
 end
 
 template "/etc/nginx/sites-available/metadisk.conf" do

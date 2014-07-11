@@ -1,6 +1,6 @@
 DATACOIN_PASSWORD = "<%= @datacoin_password %>"
 
-DATABASE_PATH = "dbname=storj user=storj password=<%= @database_password %> host=localhost"
+DATABASE_PATH = "postgres://storj:<%= @database_password %>@localhost/storj"
 
 STORAGE_SIZE = <%= @limits_storage_size %>
 STORAGE_FILE = <%= @limits_file_size %>
