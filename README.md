@@ -14,8 +14,8 @@ After cloning this repository and running bundle install, you can setup a node
 by creating a json file in the nodes/ directory with the name "hostname.json"
 (for example, node1.storj.io.json) and running the following commands:
 
-  knife solo prepare root@node1.storj.io
-  knife solo cook root@node1.storj.io
+    knife solo prepare root@node1.storj.io
+    knife solo cook root@node1.storj.io
 
 
 ## Components and overall design
