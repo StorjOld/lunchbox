@@ -162,6 +162,14 @@ execute 'accounts-migrations' do
   group account
 end
 
+execute 'accounts-api-key' do
+  command ".env/bin/python add-key.py #{node['metadisk']['accounts']['api_key']}"
+
+  cwd   "/home/#{account}/accounts"
+  user  account
+  group account
+end
+
 template "/etc/nginx/sites-available/metadisk.conf" do
   mode   0600
   owner  "root"
