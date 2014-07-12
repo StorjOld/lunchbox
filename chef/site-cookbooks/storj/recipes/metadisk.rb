@@ -120,17 +120,17 @@ template "/home/#{account}/web-core/local_settings.py" do
   source "metadisk-local-settings.py.erb"
 
   variables(
-    datacoin_password: node['datacoin']['rpc']['password'],
-    database_password: node['postgresql']['password']['storj'],
+    datacoin_password:        node['datacoin']['rpc']['password'],
+    database_password:        node['postgresql']['password']['storj'],
 
     limits_storage_size:      node['metadisk']['limits']['storage_size'],
     limits_file_size:         node['metadisk']['limits']['file_size'],
     limits_incoming_transfer: node['metadisk']['limits']['incoming_transfer'],
     limits_outgoing_transfer: node['metadisk']['limits']['outgoing_transfer'],
 
-    accounts_enabled: node['metadisk']['accounts']['enabled'],
-    accounts_api_key: node['metadisk']['accounts']['api_key'],
-    hostname:         node['metadisk']['accounts']['hostname']
+    accounts_enabled:         node['metadisk']['accounts']['enabled'],
+    accounts_api_key:         node['metadisk']['accounts']['api_key'],
+    accounts_hostname:        node['metadisk']['hostname']
   )
 
   notifies :run, 'execute[enable-metadisk-webcore]'
