@@ -2,6 +2,7 @@ include_recipe 'python::virtualenv'
 include_recipe 'nginx'
 include_recipe 'postgresql::server'
 include_recipe 'database::postgresql'
+include_recipe 'storj::pushycat'
 
 package 'git'
 package 'build-essential'
@@ -230,4 +231,10 @@ end
 nginx_site 'metadisk.conf'
 nginx_site 'default' do
   enable false
+end
+
+pushycat_add 'metadisk' do
+  url "https://github.com/Storj/metadisk.git"
+  path "/home/#{account}/frontend/"
+  user account
 end

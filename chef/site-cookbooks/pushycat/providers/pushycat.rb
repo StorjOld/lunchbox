@@ -5,7 +5,9 @@ def whyrun_supported
 end
 
 action :install do
-  package 'pushycatd'
+  package 'pushycatd' do
+    action :upgrade
+  end
 
   python 'pushycat config' do
     code <<-EOH
