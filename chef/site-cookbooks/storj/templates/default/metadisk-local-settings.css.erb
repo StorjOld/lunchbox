@@ -1,1 +1,8 @@
+<%- unless @accounts_enabled %>
 .account-panel { display: none; }
+<%- end %>
+
+<%- unless @sharing_enabled %>
+.sharing-panel { display: none; }
+<%- end %>
+

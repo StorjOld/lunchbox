@@ -111,6 +111,11 @@ template "/home/#{account}/frontend/static/css/local_settings.css" do
   owner  account
   group  account
   source "metadisk-local-settings.css.erb"
+
+  variables(
+    accounts_enabled: node['metadisk']['accounts']['enabled'],
+    sharing_enabled:  false
+  )
 end
 
 template "/home/#{account}/web-core/local_settings.py" do
@@ -164,6 +169,14 @@ end
 
 execute 'accounts-api-key' do
   command ".env/bin/python add-key.py #{node['metadisk']['accounts']['api_key']}"
+
+  cwd   "/home/#{account}/accounts"
+  user  account
+  group account
+end
+
+execute 'accounts-add-promocode' do
+  command ".env/bin/python add-promocode.py PLEASE 1073741824"
 
   cwd   "/home/#{account}/accounts"
   user  account
