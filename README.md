@@ -24,10 +24,10 @@ by creating a json file in the nodes/ directory with the name "hostname.json"
 
 #### Datacoin
 
-metadisk uses the Datacoin blockchain to store information relative to the
-uploaded files. Each node currently contains a datacoin daemon that's watching
+MetaDisk uses the Datacoin blockchain to store information relative to the
+uploaded files. Each node currently contains a Datacoin daemon that's watching
 the blockchain. Datacoin is installed through a deb package, hosted on
-packages.storj.io. We're currently running our own [fork of the datacoin
+packages.storj.io. We're currently running our own [fork of the Datacoin
 daemon](//github.com/Storj/datacoin-hp), with some small patches to make it
 configurable on compile time.
 
@@ -36,7 +36,7 @@ configurable on compile time.
 During development, it is good to have our code being self-updatable. To do so, we
 have some webhooks on github that automatically update some pieces of our stack. This
 is achieved by using [pushycat](//github.com/Storj/pushy-cat). Pushycat is also installed
-through a deb package, hosted on the same repository as datacoin.
+through a deb package, hosted on the same repository as Datacoin.
 
 
 #### metadisk-webcore
